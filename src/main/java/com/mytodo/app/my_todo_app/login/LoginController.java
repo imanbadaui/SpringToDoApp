@@ -1,5 +1,6 @@
 package com.mytodo.app.my_todo_app.login;
 
+import com.mytodo.app.my_todo_app.todo.LoginAuthentication;
 import com.mytodo.app.my_todo_app.todo.Todo;
 import com.mytodo.app.my_todo_app.todo.TodoService;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,11 @@ import java.util.List;
 public class LoginController {
 
     TodoService todoService;
+    LoginAuthentication loginAuthentication;
 
-    public LoginController(TodoService todoService) {
+    public LoginController(TodoService todoService, LoginAuthentication loginAuthentication) {
         this.todoService = todoService;
+        this.loginAuthentication = loginAuthentication;
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
@@ -28,9 +31,13 @@ public class LoginController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String goToWelcome(@RequestParam String username, ModelMap model) {
-        model.put("username", username);
-        return "welcome";
+    public String goToWelcome(@RequestParam String username,@RequestParam String password,  ModelMap model) {
+        if(loginAuthentication.isUserAuth(username, password)){
+            model.put("username", username);
+            return "welcome";
+        }
+        model.put("ERROR_MESSAGE", "Username or password are invalid");
+       return "login";
     }
 
     @RequestMapping(value = "todo-list", method = RequestMethod.GET)
