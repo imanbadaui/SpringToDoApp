@@ -1,4 +1,4 @@
-package com.mytodo.app.my_todo_app.todo;
+package com.mytodo.app.my_todo_app.login;
 
 import org.springframework.stereotype.Service;
 

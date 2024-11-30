@@ -19,18 +19,22 @@
            <th>Description</th>
            <th>LocalDate</th>
            <th>isDone?</th>
+           <th> </th>
+           <th> </th>
        </tr>
        <c:forEach items="${allTodosList}" var="todo">
            <tr>
                <td>${todo.id}</td>
                <td>${todo.description}</td>
                <td>${todo.localDate}</td>
-               <td>${todo.isDone}</td>
+               <td>${todo.isDone} </td>
+               <td> <a href="update-todo?id=${todo.id}" class="btn btn-success"> Update  </a> </td>
+               <td> <a href="delete-todo?id=${todo.id}" class="btn btn-warning"> Delete </a> </td>
            </tr>
        </c:forEach>
    </table>
 
-   <a href="add"
+   <a href="todo" class = "btn btn-success"> Add New Todo </a>
   </div>
 
    <script src="webjars\bootstrap\5.3.3\js\bootstrap.min.js">  </script>

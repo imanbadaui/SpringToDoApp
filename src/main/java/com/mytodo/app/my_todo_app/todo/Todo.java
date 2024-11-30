@@ -1,14 +1,19 @@
 package com.mytodo.app.my_todo_app.todo;
 
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class Todo {
     private int id;
+
+    @Size(min=10,max=20, message="description must be between 10 to 20 characters.")
     private  String description;
     private LocalDate localDate;
     private boolean isDone;
 
     public Todo(int id, String description, LocalDate localDate, boolean isDone ) {
+
         this.id = id;
         this.description = description;
         this.localDate = localDate;
